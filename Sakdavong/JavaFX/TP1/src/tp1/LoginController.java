@@ -5,11 +5,11 @@
  */
 package tp1;
 
-//import com.sun.istack.internal.logging.Logger;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//import sun.util.logging.PlatformLogger;
 
 /**
  * FXML Controller class
@@ -40,7 +39,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        login.requestFocus();
     }
 
     ContexteIdentification contexte;
@@ -59,35 +58,44 @@ public class LoginController implements Initializable {
 
     @FXML
     private void processOk(ActionEvent event) {
-        System.out.println("Le login est " + contexte.loginUtilisateurConnecteProperty().getValue() + " et le password est " + contexte.passwordUtilisateurConnecteProperty().getValue());
+        
+        //System.out.println("Le login est " + contexte.loginUtilisateurConnecteProperty().getValue() + " et le password est " + contexte.passwordUtilisateurConnecteProperty().getValue());
 
-        Alert alert = new Alert(AlertType.INFORMATION);
+
+        /* Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         //alert.setHeaderText("Look, an Information Dialog");
         alert.setContentText("Le login est " + contexte.loginUtilisateurConnecteProperty().getValue() + " et le password est " + contexte.passwordUtilisateurConnecteProperty().getValue());
-
-        alert.showAndWait();
-        /*Personne p = contexte.getPersonnes().identification(contexte.loginUtilisateurConnecteProperty().getValue(), contexte.passwordUtilisateurConnecteProperty().getValue());
+        alert.showAndWait();*/
         
-        if (p != null){
-            try{
+        Personne p = contexte.getPersonnes().identification(contexte.loginUtilisateurConnecteProperty().getValue(), contexte.passwordUtilisateurConnecteProperty().getValue());
+
+        if (p != null) {
+            System.out.println("Le login est " + contexte.loginUtilisateurConnecteProperty().getValue() + " et le password est " + contexte.passwordUtilisateurConnecteProperty().getValue());
+            try {
                 //Recupération du stage a partir de n'importe quel objet de JavaFX
                 Stage stage = (Stage) this.login.getScene().getWindow();
-                
+
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Tp1.class.getResource("MainWindow.fxml"));
                 BorderPane rootLayout = (BorderPane) loader.load();
-            
+
                 //Chargement du second controleur
                 MainWindowController controller = loader.getController();
                 controller.setContexte(contexte);
-            
-                Scene scene = new Scene(rootLayout);
+
+                Scene scene = new Scene(rootLayout, 1000, 600);
                 stage.setScene(scene);
-                stage.centerOnScreen();            
-            }catch(IOException e){
+                stage.centerOnScreen();
+            } catch (IOException e) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
             }
-        }*/
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Identification Error");
+            alert.setContentText("Mauvais login ou password. \nVeuillez essayer de nouveau. :)");
+            alert.showAndWait();
+        }
     }
 }
