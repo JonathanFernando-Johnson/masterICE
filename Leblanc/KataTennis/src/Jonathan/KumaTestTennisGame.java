@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class KumaTestTennisGame {
 
-	private TennisGame partie;
+	private KumaTennisGame partie;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.partie = new TennisGame();
+		this.partie = new KumaTennisGame();
 	}
 
 	@After
@@ -87,7 +87,5 @@ public class KumaTestTennisGame {
 		setterScore(4, 6);
 		assertEquals("Win for player2", this.partie.currentScore());
 	}
-	
-
 
 }
