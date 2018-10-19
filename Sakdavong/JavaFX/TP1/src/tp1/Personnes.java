@@ -20,7 +20,7 @@ public class Personnes {
         this.liste = FXCollections.observableArrayList();
         this.liste.add(new Personne("naruto", "konoa", "Naruto UZUMAKI", "chez naruto", "", "123456789", "987654321"));
         this.liste.add(new Personne("luffy", "niku", "Monkey D. Luffy", "Sunny Go", "", "147258369", "963852741"));
-        this.liste.add(new Personne("admin", "admin", "Jonathan FERNANDO-JOHNSON", "Chaz moi", "", "1593574862", "9517532684"));
+        this.liste.add(new Personne("admin", "admin", "Jonathan FERNANDO-JOHNSON", "Chez moi", "", "1593574862", "9517532684"));
 
     }
         
