@@ -36,7 +36,16 @@ public class kataTest {
 	
 	@Test
 	public void testThreeDifferentBooks() {
-		assertEquals(51.20, new Books(2,2,2,1,1).calculatePrice(), 0.0001);
+		assertEquals(51.60, new Books(2,2,2,1,1).calculatePrice(), 0.0001);
 	}
-
+	
+	@Test
+	public void testFourDifferentAndTwoEqualBooks() {
+		assertEquals(39.60, new Books(3, 1, 1, 1, 0).calculatePrice(), 0.0001);
+	}
+	
+	@Test
+	public void testThreeDifferentBooksPlusOne() {
+		assertEquals(29.60, new Books(2, 1, 0, 0, 1).calculatePrice(), 0.0001);
+	}
 }
